@@ -99,7 +99,6 @@ router.delete('/favorites', authorize, (req, res, next) => {
     return next(boom.create(400, 'Book ID must be an integer'));
   }
 
-  // eslint-disable-next-line camelcase
   const clause = { book_id: bookId, user_id: req.claim.userId };
 
   let favorite;

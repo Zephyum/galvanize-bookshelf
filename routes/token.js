@@ -50,13 +50,13 @@ router.post('/token', (req, res, next) => {
     .then(() => {
       const claim = { userId: user.id };
       const token = jwt.sign(claim, process.env.JWT_KEY, {
-        expiresIn: '7 days'  // exp field to the payload
+        expiresIn: '7 days'  // exp field
       });
       //make dat cookie
       res.cookie('token', token, {
         httpOnly: true,
         expires: new Date(Date.now() + 1000 * 60 * 60 * 24 * 7),  // 7 days
-        secure: router.get('env') === 'production'  // Set from the NODE_ENV
+        secure: router.get('env') === 'production'
       });
 
       delete user.hashedPassword;
